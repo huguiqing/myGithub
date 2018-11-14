@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device,minimum-scale=1.0,maximum-scale=1.0,user=scalable=0">
+	<link rel="stylesheet" href="bootstrap.css">
+	<style>
+		.container{
+			width:640px;
+		}
+		.btn1 button{
+			width: 100%;
+		}
+		.warning{
+			height: 30px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body ng-app="myapp">
+	<div id="box" ng-controller="cont" class="container">
+		<h1 class="text-center">注册系统</h1>
+		<form name="rigest" class="form-horizontal container-fluid">
+			<div class="row form-group">
+				<div class="col-xs-4"><label for="ueser_name">用户名：</label></div>
+				<div class="col-xs-8"><input type="text" id="ueser_name" name="username" ng-model="data.username"  ng-minlength="4" ng-maxlength="6" required></div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-4"><label for="tel">手机号：</label></div>
+				<div class="col-xs-8"><input type="text" id="tel" name="tel" ng-model="data.tel"  pattern="^1\d{10}$" required></div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-4"><label for="address">地&emsp;址：</label></div>
+				<div class="col-xs-8"><input type="text" id="address" name="address" ng-model="data.address" ng-required="true"></div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-4"><label for="email">邮&emsp;箱：</label></div>
+				<div class="col-xs-8"><input type="text" id="email" name="email" ng-model="data.email" required ng-pattern="/^\w+@\w+\.[\w]+/"></div>
+			</div>
+			<div class="warning">
+				<p class="text-danger" ng-show="rigest.username.$dirty && rigest.username.$invalid">请正确输入用户名</p>
+				<p class="text-danger" ng-show="rigest.tel.$dirty && rigest.tel.$invalid">请输入1到11个数字</p>
+				<p class="text-danger" ng-show="rigest.address.$dirty && rigest.address.$invalid">这是必填项</p>
+				<p class="text-danger" ng-show="rigest.email.$dirty && rigest.email.$invalid">请输入正确的邮箱</p>
+				<p class="text-danger" ng-show="showarr">请添加完整信息</p>
+			</div>
+			<div class="row btn1">
+				<button class="btn btn-success" ng-click="cleck()">提交</button>
+			</div>
+		</form>
+	</div>
+<script type="text/javascript" src="./code/angular.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module('myapp',[]);
+	app.controller('cont',function($scope){
+		$scope.data={};
+		$scope.showarr=false;
+		$scope.cleck = function(){
+			$scope.showarr = $scope.rigest.$invalid;
+			if($scope.rigest.$valid){
+				console.log($scope.data);
+			}
+		}
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device,minimum-scale=1.0,maximum-scale=1.0,user=scalable=0">
+	<link rel="stylesheet" href="bootstrap.css">
+	<style>
+		.container{
+			width:640px;
+		}
+		.btn1 button{
+			width: 100%;
+		}
+		.warning{
+			height: 30px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body ng-app="myapp">
+	<div id="box" ng-controller="cont" class="container">
+		
+		<form name="rigest" class="form-horizontal container-fluid">
+			<input type="text" ng-model="msg" ng-change="ischange()">
+			
+		</form>
+	</div>
+<script type="text/javascript" src="./code/angular.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module('myapp',[]);
+	app.controller('cont',function($scope){
+		$scope.ischange = function(){
+			console.log(this);
+			console.log($scope);
+			console.log(arguments);
+		}
+	});
+</script>
+</body>
+</html>

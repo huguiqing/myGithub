@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+
+<input type="number" min="0" max="255" ng-model="msg">
+<p>{{msg}} 的16进制是:</p>
+
+<h1 ng-bind="log()"></h1>
+<h1>{{log()}}</h1>
+</div>
+
+<p>自定义服务，用于转换16进制数：</p>
+
+<script>
+var app = angular.module('myApp', []);
+
+app.service('hexahy',function(){
+    this.myFunc = function(x){
+        /*console.log(x);
+        console.log("111");
+        console.log(parseInt(x).toString(16));*/
+        return parseInt(x).toString(16);
+    }
+});
+
+app.controller('myCtrl',function($scope,hexahy){
+    $scope.msg = 255;
+    //$scope.hex = hexahy.myFunc($scope.msg);
+
+    //在函数里面的值会改变时，这个函数也会执行一次
+    $scope.log = function(){
+        $scope.hex = hexahy.myFunc($scope.msg);
+        return $scope.hex;
+        
+    }
+});
+
+</script>
+
+</body>
+</html>

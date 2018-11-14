@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device,minimum-scale=1.0,maximum-scale=1.0,user=scalable=0">
+	
+	<style>
+		.red{
+			width:100px;
+			height: 100px;
+			background: red;
+		}
+		.green{
+			width: 100px;
+			height: 100px;
+			background:green;
+		}
+		.w200{
+			width:200px;
+		}
+	</style>
+</head>
+<body ng-app="myapp">
+	<div ng-controller="cont">
+		<button ng-click="check()">点击</button>
+		<div ng-class="{red:x>3 , green:x<=3}">{{x}}</div>
+		<div ng-class="'green'" ng-style="{width: x*100+'px'}"></div>
+		<div ng-class="'red'" ng-style="sty"></div>
+	</div>
+<script type="text/javascript" src="./code/angular.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module('myapp',[]);
+	app.controller('cont',function($scope,$timeout){
+		$scope.check = function(){
+			$scope.x = Math.floor(Math.random()*6+1);
+			$scope.sty = {width: 100*$scope.x+'px'};
+			//$scope.divs = 'red';
+		}
+		//$scope.first = 'green';
+		//$scope.second = 'w200';
+	});
+	
+	
+</script>
+</body>
+</html>

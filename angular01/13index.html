@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		button{
+			/*width:50px;
+			height: 50px;
+			text-align: center;*/
+		}
+	</style>
+</head>
+<body ng-app="myApp" ng-init="">
+<div id="box" ng-controller="cont">
+	<input type="text" ng-model="msg">
+	<!--<p>{{msg | tocamel : 1 : 2}}</p>
+	<p>{{msg | tocamel : 1 : 2}}</p>-->
+	<p>{{msg | tocamel : true}}</p>
+	<p>{{msg | tocamel | lowercase}}</p>
+</div>
+	
+<script type="text/javascript" src="./code/angular.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module('myApp',[]);
+	app.filter('tocamel',function(){
+		return function(data,istoogle){
+			if(istoogle){
+				data=data.replace(/^([a-z])/,function(match,$1){
+					return $1.toUpperCase();
+				});
+			}
+
+			return data.replace(/\_(\w)/g,function(match,$1){
+				return $1.toUpperCase();
+			});
+		}
+	});
+	app.controller('cont',function($scope){
+		$scope.msg = 'hello';
+	});
+</script>
+</body>
+</html>

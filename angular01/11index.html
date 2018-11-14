@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		button{
+			/*width:50px;
+			height: 50px;
+			text-align: center;*/
+		}
+	</style>
+</head>
+<body ng-app="myApp" >
+<div id="box" ng-controller="cont">
+	<h1>{{num | number : 5}}</h1>
+</div>
+	
+<script type="text/javascript" src="./code/angular.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module('myApp',[]);
+	app.controller('cont',function($scope){
+		$scope.num = 123456.1421593;
+	});
+</script>
+</body>
+</html>

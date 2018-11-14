@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		button{
+			/*width:50px;
+			height: 50px;
+			text-align: center;*/
+		}
+	</style>
+</head>
+<body ng-app="myApp" >
+<div id="box" ng-controller="cont">
+	<h1>{{people | orderBy : 'age' : true | json}}</h1>
+</div>
+	
+<script type="text/javascript" src="./code/angular.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module('myApp',[]);
+	app.controller('cont',function($scope){
+		$scope.people = [
+			{name:'json' , phone:'555-1234' , age:10},
+			{name:'sng' , phone:'555-4526' , age:9},
+			{name:'ths' , phone:'555-1225' , age:20},
+			{name:'amk' , phone:'555-9851' , age:18},
+		]
+	});
+</script>
+</body>
+</html>

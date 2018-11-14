@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device,minimum-scale=1.0,maximum-scale=1.0,user=scalable=0">
+	
+	<style>
+		
+		
+	</style>
+</head>
+<body >
+	<div id="app" ng-app="myapp">
+		<my-title></my-title>
+		<div my-title></div>
+		<div class="my-title"></div>
+	</div>
+<script type="text/javascript" src="./code/angular.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module('myapp',[]);
+	app.directive('myTitle',function(){
+		return {
+			restrict:'ECMA',
+			template:'<h1>今天是个好日子！</h1>'
+
+		}
+	});
+	
+</script>
+</body>
+</html>

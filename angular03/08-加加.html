@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jiajia</title>
+	<style>
+		.box{
+			width:200px;
+			height: 200px;
+			border:1px solid #000;
+		}
+	</style>
+</head>
+<body ng-app="myapp">
+	<div ng-controller="main">
+		<div class="box" ng-style="get()"></div>
+		<p>
+			r:
+			<input type="range" min="0" max="255" ng-model="r">
+			<input type="number" ng-model="r">
+		</p>
+		<p>
+			g:
+			<input type="range" min="0" max="255" ng-model="g">
+			<input type="number" ng-model="g">
+		</p>
+		<p>
+			b:
+			<input type="range" min="0" max="255" ng-model="b">
+			<input type="number" ng-model="b">
+		</p>
+	</div>
+	<script type="text/javascript" src="./code/jquery.min.js"></script>
+	<script type="text/javascript" src="./code/angular.min.js"></script>
+	<script type="text/javascript">
+		var myapp = angular.module("myapp",[]);
+		myapp.controller("main",function($scope){
+			$scope.r = 88;
+			$scope.g = 88;
+			$scope.b = 88;
+			$scope.get = function(){
+				return {"background":"rgb("+$scope.r+","+$scope.g+","+$scope.b+")"};
+			}
+		});
+	</script>
+</body>
+</html>

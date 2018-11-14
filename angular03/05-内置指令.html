@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device,minimum-scale=1.0,maximum-scale=1.0,user=scalable=0">
+	
+	<style>
+		
+		
+	</style>
+</head>
+<body id="app" ng-app="myapp" class="ng-scope">
+	<div ng-controller="main">
+		<input type="text" ng-model="msg">
+		<h1 my-msg="msg"></h1>
+	</div>
+<script type="text/javascript" src="./code/jquery.min.js"></script>
+<script type="text/javascript" src="./code/angular.min.js"></script>
+<script type="text/javascript">
+	angular.module('myapp',[])
+	.controller('main',function($scope){
+		$scope.msg='hello';
+	})
+	.directive('myMsg',function(){
+		return {
+			restrict: 'A',
+			/*scope:{
+				msg:'=myMsg'
+			},*/
+			/*
+			**$scope:指令作用域
+			*jplite:指令元素jqlite对象  ->h1
+			*attrs: 指令元素的属性对象  attrs.myMsg
+
+			 */
+			link : function(scope,jqlite,attrs){
+				//console.log(scope.msg);
+				/*scope.$watch(attrs.myMsg,function(){
+					jqlite.html(scope.msg);
+				});*/
+				scope.$watch(attrs.myMsg,function(newValue,oldValue,scope){
+					jqlite.html(newValue);
+				});
+				//jqlite.html(scope.msg);
+			}
+		}
+	});
+
+</script>
+</body>
+</html>

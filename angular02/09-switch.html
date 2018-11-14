@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device,minimum-scale=1.0,maximum-scale=1.0,user=scalable=0">
+	
+	<style>
+		.red{
+			width:100px;
+			height: 100px;
+			background: red;
+		}
+		.green{
+			width: 100px;
+			height: 100px;
+			background:green;
+		}
+		.w200{
+			width:200px;
+		}
+	</style>
+</head>
+<body ng-app="myapp">
+	<div ng-controller="cont">
+		<input type="text" ng-model="msg">
+		<div ng-switch on="msg"><!--on来控制变量来对比下面的when值-->
+			<h1 ng-switch-default>第一个页面</h1>
+			<h2 ng-switch-when="second">第二个页面</h2>
+			<h3 ng-switch-when="third">第三个页面</h3>
+		</div>
+	</div>
+<script type="text/javascript" src="./code/angular.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module('myapp',[]);
+	app.controller('cont',function($scope,$timeout){
+		$scope.check = function(){
+			
+		}
+		//$scope.first = 'green';
+		//$scope.second = 'w200';
+	});
+	
+	
+</script>
+</body>
+</html>

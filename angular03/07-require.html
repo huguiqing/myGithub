@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device,minimum-scale=1.0,maximum-scale=1.0,user=scalable=0">
+	<style type="text/css">
+		.span{
+			color:red;
+		}
+	</style>
+</head>
+<body id="app" ng-app="myapp" class="ng-scope">
+	<div ng-controller="main">
+		<input type="text" ng-model="msg" my-del="请输入正确格式" required>
+		<input type="text" ng-model="abc" my-del="请输入正确的手机号码" required ng-pattern='/^1\d{10}$/'>
+	</div>
+<script type="text/javascript" src="./code/jquery.min.js"></script>
+<script type="text/javascript" src="./code/angular.min.js"></script>
+<script type="text/javascript">
+	angular.module('myapp',[])
+	.controller('main',function($scope){
+		$scope.msg=false;
+		$scope.abc = '';
+	})
+	.directive('myDel',function(){
+		return {
+			restrict: 'A',
+			/*scope:{
+				msg:'=myMsg'
+			},*/
+			/*
+			**$scope:指令作用域
+			*jplite:指令元素jqlite对象  ->h1
+			*attrs: 指令元素的属性对象  attrs.myMsg会等于一个值
+
+			 */
+			require:'ngModel',//产生依赖关系
+			link: function(scope,jqlite,attrs,ctrl){
+
+				var span = document.createElement("span");
+				span.innerHTML=attrs.myDel;//attrs.myDel=请输入正确格式
+				span.className='span';
+
+				var flag = true;
+
+				scope.$watch(attrs.ngModel,function(value){//监听的是ngModel，因为是这个在变化
+					if(ctrl.$invalid){
+						jqlite.css('borderColor','red');
+						if(flag){
+							jqlite.after(span);
+							flag = false;
+						}
+						span.style['display'] = 'block';
+					}else{
+						jqlite.css('borderColor','#000');
+						span.style['display'] = 'none';
+					}
+				});
+			}
+		}
+	});
+
+</script>
+</body>
+</html>

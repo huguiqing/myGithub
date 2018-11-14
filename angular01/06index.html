@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		button{
+			/*width:50px;
+			height: 50px;
+			text-align: center;*/
+		}
+	</style>
+</head>
+<body ng-app="myApp" >
+<div id="box" ng-controller="cont">
+	<button ng-click="toogle('first')">商品详情</button>
+	<button ng-click="toogle('second')">用户评论</button>
+	<button ng-click="toogle('three')">第三页面</button>
+	<div ng-show="pages['first']">商品详情页</div>
+	<div ng-show="pages.second">用户评论页</div>
+	<div ng-show="pages.three">第三页面页</div>
+</div>
+<script type="text/javascript" src="./code/angular.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module('myApp',[]);
+	app.controller('cont',function($scope){
+		
+		$scope.pages = {
+			first : true,
+			second : false,
+			three : false
+		}
+
+		$scope.toogle = function(isshowfirst){
+			for(var i in $scope.pages){
+				$scope.pages[i] = false;
+			}
+			$scope.pages[isshowfirst] = true;
+		}
+	});
+</script>
+</body>
+</html>

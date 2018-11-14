@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device,minimum-scale=1.0,maximum-scale=1.0,user=scalable=0">
+	
+	<style>
+		
+		
+	</style>
+</head>
+<body >
+	<div id="app" ng-app="myapp" class="ng-scope">
+		<div repeat-num="3"><h1>yebyu</h1></div>
+		<div repeat-num="5"><h2>hello</h2></div>
+	</div>
+<script type="text/javascript" src="./code/jquery.min.js"></script>
+<script type="text/javascript" src="./code/angular.min.js"></script>
+<script type="text/javascript">
+	var app=angular.module('myapp',[]);
+
+	app.directive('repeatNum',function(){
+		return {
+			restrict: 'A',
+			/*
+			**$scope:指令作用域
+			*jplite:指令元素jqlite对象 -->div
+			*attrs: 指令元素的属性对象 attrs.repeatNum;
+
+			 */
+			link : function(scope,jqlite,attrs){
+				var num = attrs.repeatNum;
+				//console.log(num);
+				
+				/*for (var i = 0; i < num; i++) {
+					var c = jqlite.clone();//这里是克隆整个对象，然后加到这个对象的后面，所以用after
+					jqlite.after(c);
+				}*/
+				//console.log(jqlite.children());
+				var dom = jqlite.children();//先把对象里面的那个子元素取出来
+				for (var i = 0; i < num; i++) {
+					var c = dom.clone();
+					//这里是克隆整个对象里面的子元素，然后把子元素加到对象的里面，所以用append
+					jqlite.append(c);
+				}
+			}
+		}
+	});
+	
+	
+</script>
+</body>
+</html>

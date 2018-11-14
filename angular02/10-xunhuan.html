@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device,minimum-scale=1.0,maximum-scale=1.0,user=scalable=0">
+	
+	<style>
+		
+		.green{
+			
+			background:green;
+		}
+		.pink{
+			background: pink;
+		}
+		.w200{
+			width:200px;
+		}
+		.gray{
+			background: gray;
+		}
+		.red{
+			
+			background: red;
+		}
+	</style>
+</head>
+<body ng-app="myapp">
+	<div ng-controller="cont">
+		<ul ng-repeat="item in colors">
+			<li ng-class="{gray: $even, green: $odd, red: $first, pink: $last}">{{item}} even-{{$even}} first-{{$first}} middle-{{$middle}} last-{{$last}}</li>
+		</ul>
+	</div>
+<script type="text/javascript" src="./code/angular.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module('myapp',[]);
+	app.controller('cont',function($scope,$timeout){
+		$scope.colors = ['red','blue','green','yellow','orange','pink'];
+	});
+	
+	
+</script>
+</body>
+</html>
